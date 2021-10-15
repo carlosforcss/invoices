@@ -12,5 +12,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/inventory/', include(('apps.inventory.urls', "inventory", ))),
+    path('api/sales/', include(('apps.sales.urls', "sales", ))),
     path('', include(('apps.ui.urls', "ui", ))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

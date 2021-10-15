@@ -1,9 +1,99 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
+<div class="row" id="saleController">
     <div class="col-12">
-        
+        <div class="row mt-3" v-if="errors.length" v-for="error in errors">
+            <!-- Errors and alerts -->
+            <div class="col-12">
+                <div class="alert alert-warning" role="alert">
+                    [[ error ]]
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <!-- Products -->
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <div class="col-6" v-for="product in products" v-on:click="selectProduct(product)">
+                        <!-- Product card -->
+                        <div class="card mt-2 Product__card" style="width: 100%;">
+                            <div class="card-body Product__card-body d-flex justify-content-between">
+                                <div>[[ product.name ]]</div>
+                                <div>$[[ product.value ]]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- New Sale -->
+            <div class="col-12 col-md-6">
+                <div class="row px-4 mb-7">
+                    <!-- Total amount -->
+                    <div class="col-12 d-flex justify-content-between">
+                        <small class="fw-bold">Total Amount: </small>
+                        <small class="fw-bold">$[[ getTotal() ]]</small>
+                    </div>
+                    <!-- Discount -->
+                    <div class="col-12 mt-3 d-flex justify-content-end">
+                        <div class="form-check">
+                            <input v-model="newSale.discount" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Apply 30% off.
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Products -->
+                    <div class="col-12">
+                        <div class="row mt-3">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="product in newSale.products" v-if="newSale.products.length > 0">
+                                    <td>[[ product.name ]]</td>
+                                    <td>[[ product.quantity ]]</td>
+                                    <td>$[[ product.quantity * product.value ]]</td>
+                                </tr>
+                                <tr v-if="newSale.products.length == 0">
+                                    <td colspan="3" class="fs-6 mt-4 text-center">
+                                        You've got to add some producs.
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <small class="d-flex justify-content-center">
+                        </small>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                        <button class="btn btn-primary" v-on:click="createSale()">Create Invoice</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Add product to new sale -->
+    <div class="AddProduct card">
+        <div class="col-12 card-body AddProduct__body d-flex justify-content-center" v-if="!selectedProduct">
+            Please select a product to add to the invoice.
+        </div>
+        <div class="col-12 card-body AddProduct__body d-flex" v-if="selectedProduct">
+            <div class="col-4 d-flex justify-content-center align-items-center">[[ selectedProduct.name ]]</div>
+            <div class="col-4 d-flex justify-content-center">
+                <input type="text" v-model="quantity" class="AddProduct__input form-control"/>
+            </div>
+            <div class="col-4 d-flex justify-content-center align-items-center">
+                <button class="btn btn-primary" v-on:click="addSelectedProduct()">Add Product</button>
+            </div>
+        </div>
+    </div>
+
 </div>
 {% endblock %}

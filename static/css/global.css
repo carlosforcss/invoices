@@ -1,0 +1,42 @@
+
+.Product__card {
+    cursor: pointer;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    transition-duration: 0.2s;
+}
+
+.Product__card:hover {
+    transform: scale(1.05);
+}
+
+.Product__card-body input{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.Product__card-body input:focus{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+
+.AddProduct {
+    display: flex;
+    position: fixed;
+    bottom: 30px;
+    left: 10%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+    width: 80%;
+}
+
+.AddProduct__body {
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+}
+
+.AddProduct__input{
+    text-align: center;
+}
