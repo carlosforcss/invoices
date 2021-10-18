@@ -11,7 +11,6 @@ RUN apt-get install -y gcc python3-dev musl-dev
 RUN apt-get install -y gettext
 
 RUN pip install --upgrade pip
-RUN mkdir /app/requirements
-COPY ./requirements/production.txt ./requirements/production.txt
-RUN pip install -r requirements/production.txt
+COPY ./requirements.txt ./requirements.txt
+RUN pip install -r requirements.txt
 CMD gunicorn -b 0.0.0.0:80 --workers 3 config.wsgi:application
