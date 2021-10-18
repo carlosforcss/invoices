@@ -13,4 +13,4 @@ RUN apt-get install -y gettext
 RUN pip install --upgrade pip
 COPY ./requirements ./requirements
 RUN pip install -r requirements/production.txt
-CMD gunicorn -b 0.0.0.0:80 --workers 3 config.wsgi:application
+CMD gunicorn -b 0.0.0.0:80 config.wsgi:application
