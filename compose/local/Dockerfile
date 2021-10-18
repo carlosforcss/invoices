@@ -6,7 +6,8 @@ RUN apt-get install -y gettext
 
 RUN mkdir /app
 WORKDIR /app
-COPY requirements.txt /app/
+RUN mkdir /app/requirements
+COPY ./requirements ./requirements
 
 RUN pip install -r requirements.txt
 COPY . /app/

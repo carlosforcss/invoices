@@ -13,7 +13,6 @@ DJANGO_APPS = [
 
 THIRD_PARTIES = [
     "rest_framework",
-    "test_without_migrations",
 ]
 
 PROJECT_APPS = [
