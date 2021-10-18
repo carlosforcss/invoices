@@ -1,7 +1,7 @@
 # Welcome to invoice maker.
 
 Generate invoices with preloaded products.
-You can check it out here: http:ip
+You can check it out here: http://137.184.20.67/
 
 #### Set it up in local for development.
 1. Go to the project base folder.
