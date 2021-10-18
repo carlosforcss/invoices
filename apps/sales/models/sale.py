@@ -19,10 +19,15 @@ class Sale(CommonModel):
     def total(self):
         value = 0
         for sale_line in self.lines.all():
-            value += sale_line.value
+            value += sale_line.amount
         if self.discount:
             value = value - (value * Decimal("0.30")).quantize(Decimal("0.00"))
         return value
+
+    class Meta:
+        db_table = _("sale")
+        verbose_name = _("sale")
+        verbose_name_plural = _("sales")
 
 
 class SaleLine(CommonModel):
@@ -54,3 +59,8 @@ class SaleLine(CommonModel):
             self.value = self.product.value
             self.amount = self.value * self.quantity
         return super().save(*args, **kwargs)
+
+    class Meta:
+        db_table = _("sale_lines")
+        verbose_name = _("sale line")
+        verbose_name_plural = _("sale lines")

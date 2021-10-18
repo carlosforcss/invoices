@@ -16,3 +16,8 @@ class Product(CommonModel):
 
     def __unicode__(self):
         return u"{}".format(self.name)
+
+    class Meta:
+        db_table = _("products")
+        verbose_name = _("product")
+        verbose_name_plural = _("products")

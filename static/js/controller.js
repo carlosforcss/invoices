@@ -39,7 +39,7 @@ var app = new Vue({
             const lines = new Array()
             this.errors = []
             this.newSale.products.forEach(function (product) {
-                lines.push({product: product.id, quantity: product.quantity})
+                lines.push({product: product, quantity: product.quantity})
             })
             const response = await api.sales.create({...this.newSale, lines: lines})
             if(response.id) {

@@ -9,12 +9,19 @@ from apps.utils.serializers import CustomSlugRelatedField
 
 class SaleLineSerializer(serializers.ModelSerializer):
 
-    product = serializers.SlugRelatedField(queryset=Product.objects.all(), slug_field="id")
+    product = CustomSlugRelatedField(
+        queryset=Product.objects.all(),
+        slug_field="id",
+        additional_fields=[
+            "name",
+            "value",
+        ]
+    )
 
     class Meta:
         model = SaleLine
         fields = ("id", "product", "quantity", "value", "amount")
-        read_only_fields = ("id",)
+        read_only_fields = ("id", "value", "amount", )
 
 
 class SaleSerializer(serializers.ModelSerializer):
