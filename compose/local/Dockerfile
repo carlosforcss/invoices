@@ -9,6 +9,6 @@ WORKDIR /app
 RUN mkdir /app/requirements
 COPY ./requirements ./requirements
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements/local.txt
 COPY . /app/
 CMD python3.7 manage.py runserver 0.0.0.0:8000

@@ -18,6 +18,11 @@ class SaleLineSerializer(serializers.ModelSerializer):
         ]
     )
 
+    def validate_quantity(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("This field has to be higher tan 0.")
+        return value
+
     class Meta:
         model = SaleLine
         fields = ("id", "product", "quantity", "value", "amount")

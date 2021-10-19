@@ -87,7 +87,7 @@
         <div class="col-12 card-body AddProduct__body d-flex" v-if="selectedProduct">
             <div class="col-4 d-flex justify-content-center align-items-center">[[ selectedProduct.name ]]</div>
             <div class="col-4 d-flex justify-content-center">
-                <input type="text" v-model="quantity" class="AddProduct__input form-control"/>
+                <input type="number" v-model="quantity" class="AddProduct__input form-control"/>
             </div>
             <div class="col-4 d-flex justify-content-center align-items-center">
                 <button class="btn btn-primary" v-on:click="addSelectedProduct()">Add Product</button>

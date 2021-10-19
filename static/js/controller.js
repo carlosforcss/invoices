@@ -22,13 +22,13 @@ var app = new Vue({
             if(this.newSale.discount) {
                 total_in_lines -= total_in_lines * 0.30
             }
-            return total_in_lines
+            return total_in_lines.toFixed(2)
         },
         selectProduct: function (selectedProduct) {
             this.selectedProduct = selectedProduct
         },
         addSelectedProduct: function () {
-            if(this.selectedProduct) {
+            if(this.selectedProduct && this.quantity >= 1) {
                 this.newSale.products.push({...this.selectedProduct, quantity: this.quantity, total: this.quantity * this.selectedProduct.value})
                 this.newSale.value += this.selectedProduct.value * this.quantity
                 this.selectedProduct = null
